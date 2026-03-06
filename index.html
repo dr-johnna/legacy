@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEGACY™ | Dr. Johnna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Switzer:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FEFCF9;
+      --yellow: #F0F87C;
+      --dark: #141414;
+      --mid: #1E1E1E;
+      --warm-gray: #F2EDE6;
+      --text-dark: #1a1a1a;
+      --text-muted: #6b6560;
+      --rust: #C0392B;
+      --teal: #4ECDC4;
+      --border: rgba(0,0,0,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Switzer', sans-serif; background: var(--cream); color: var(--text-dark); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(254,252,249,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: padding 0.3s; }
+    nav.scrolled { padding: 14px 48px; }
+    .nav-brand { font-family: 'Switzer', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); text-decoration: none; }
+    .nav-cta { background: var(--rust); color: white; border: none; padding: 11px 26px; font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block; }
+    .nav-cta:hover { background: #a93226; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 80px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 500; }
+    .hero-title { font-family: 'Switzer', sans-serif; font-size: clamp(80px, 11vw, 140px); font-weight: 800; line-height: 0.9; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 4px; }
+    .hero-title sup { font-size: 0.28em; vertical-align: super; font-weight: 700; }
+    .hero-subtitle { font-size: 17px; font-weight: 500; color: var(--text-dark); line-height: 1.5; margin-bottom: 20px; }
+    .hero-subtitle .highlight { background: var(--yellow); padding: 1px 6px; }
+    .hero-tagline { font-family: 'Switzer', sans-serif; font-style: italic; font-size: 17px; color: var(--text-muted); margin-bottom: 48px; font-weight: 400; line-height: 1.55; max-width: 420px; }
+    .hero-cta-wrap { display: flex; align-items: center; gap: 24px; }
+    .btn-primary { background: var(--rust); color: white; padding: 16px 36px; font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.2s; }
+    .btn-primary:hover { background: #a93226; transform: translateY(-2px); }
+    .hero-note { font-size: 12px; color: var(--text-muted); font-weight: 400; line-height: 1.5; }
+    .hero-right { position: relative; overflow: hidden; background: var(--warm-gray); }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-badge { position: absolute; bottom: 40px; left: 40px; background: var(--dark); color: white; padding: 20px 24px; max-width: 220px; }
+    .hero-badge-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); margin-bottom: 6px; font-weight: 500; }
+    .hero-badge-text { font-family: 'Switzer', sans-serif; font-size: 14px; font-weight: 500; line-height: 1.3; }
+
+    /* SHARED */
+    .eyebrow { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; display: block; font-weight: 500; }
+    .section-title { font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif; font-size: clamp(32px, 4vw, 54px); font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 24px; }
+    .section-inner { max-width: 1080px; margin: 0 auto; padding: 100px 48px; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* PAIN */
+    .pain { background: #F5F0E8; }
+    .pain .section-inner { max-width: 800px; }
+    .pain-headline { font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 32px; }
+    .pain-headline em { font-style: italic; font-weight: 600; }
+    .pain-body { font-size: 17px; color: #4a4540; margin-bottom: 28px; line-height: 1.75; font-weight: 400; }
+    .pain-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 600; }
+    .pain-list { list-style: none; margin-bottom: 40px; }
+    .pain-list li { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.07); font-size: 16px; color: #3a3530; line-height: 1.5; font-weight: 400; }
+    .pain-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--rust); flex-shrink: 0; margin-top: 8px; }
+    .pain-closer { font-family: 'Switzer', sans-serif; font-size: 20px; font-style: italic; font-weight: 400; color: var(--text-dark); padding-top: 20px; }
+
+    /* FOR YOU */
+    .for-you { background: var(--cream); }
+    .checklist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+    .check-item { display: flex; align-items: center; gap: 20px; padding: 16px 24px; background: white; border: 1px solid var(--border); font-size: 15px; font-weight: 400; color: var(--text-dark); transition: border-color 0.2s; }
+    .check-item:hover { border-color: var(--yellow); }
+    .check-icon { width: 28px; height: 28px; background: var(--yellow); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 700; }
+    .for-you-callout { background: var(--dark); color: white; padding: 36px 40px; font-family: 'Switzer', sans-serif; font-size: 17px; font-weight: 400; line-height: 1.65; }
+    .for-you-callout strong { color: var(--yellow); font-weight: 500; }
+
+    /* COST */
+    .cost { background: var(--dark); color: white; }
+    .cost .eyebrow { color: rgba(255,255,255,0.4); }
+    .cost .section-title { color: white; }
+    .cost-intro { font-size: 17px; color: rgba(255,255,255,0.6); font-weight: 400; margin-bottom: 60px; max-width: 560px; }
+    .cost-items { display: flex; flex-direction: column; margin-bottom: 56px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .cost-item { padding: 36px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .cost-item-title { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; font-weight: 600; }
+    .cost-item-body { font-size: 16px; color: rgba(255,255,255,0.7); font-weight: 400; line-height: 1.7; max-width: 620px; }
+    .cost-pullquote { background: rgba(255,255,255,0.05); border-left: 3px solid var(--yellow); padding: 32px 40px; }
+    .cost-pullquote p { font-family: 'Switzer', sans-serif; font-size: 17px; font-weight: 400; font-style: italic; line-height: 1.7; color: rgba(255,255,255,0.9); margin-bottom: 16px; }
+    .cost-pullquote em { font-style: italic; font-size: 15px; color: rgba(255,255,255,0.5); font-family: 'Switzer', sans-serif; }
+
+    /* METHOD */
+    .method { background: var(--warm-gray); }
+    .method-intro { font-size: 17px; color: var(--text-muted); font-weight: 400; max-width: 600px; margin-bottom: 60px; line-height: 1.75; }
+    .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+    .step-card { background: white; padding: 40px 36px; }
+    .step-num { font-family: 'Switzer', sans-serif; font-size: 64px; font-weight: 800; color: rgba(0,0,0,0.05); line-height: 1; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .step-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; color: var(--text-dark); }
+    .step-body { font-size: 14px; color: var(--text-muted); font-weight: 400; line-height: 1.7; }
+
+    /* OUTCOMES */
+    .outcomes { background: #EDF2EC; }
+    .outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 48px; }
+    .outcome-item { background: white; padding: 28px 32px; display: flex; align-items: flex-start; gap: 16px; }
+    .outcome-check { color: #5a9e7a; font-size: 16px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .outcome-text { font-size: 14px; color: var(--text-dark); font-weight: 400; line-height: 1.6; }
+    .outcomes-closing { text-align: center; font-family: 'Switzer', sans-serif; font-style: italic; font-size: 18px; font-weight: 400; color: var(--text-muted); }
+
+    /* SHIFT */
+    .shift { background: var(--cream); }
+    .shift-layout { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: center; margin-bottom: 60px; }
+    .shift-from { background: #F5F0E8; border: 1px solid rgba(0,0,0,0.06); padding: 40px; }
+    .shift-to { background: var(--yellow); padding: 40px; }
+    .shift-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; display: block; font-weight: 600; }
+    .shift-to .shift-label { color: rgba(0,0,0,0.5); }
+    .shift-body { font-size: 15px; font-weight: 400; line-height: 1.75; color: var(--text-dark); }
+    .shift-arrow { font-size: 28px; color: var(--text-muted); }
+    .shift-image { text-align: center; }
+    .shift-image img { width: 100%; max-width: 480px; height: 560px; object-fit: cover; object-position: center top; }
+
+    /* INCLUDED */
+    .included { background: var(--warm-gray); }
+    .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 64px; }
+    .included-card { background: white; padding: 36px 32px; }
+    .included-card-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-dark); }
+    .included-card-body { font-size: 14px; color: var(--text-muted); font-weight: 400; line-height: 1.7; }
+    .bonuses-section { background: #FEFAE8; padding: 56px 0 0; }
+    .bonuses-title { font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif; font-size: 28px; font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rust); text-align: center; margin-bottom: 8px; }
+    .bonuses-sub { text-align: center; font-size: 14px; color: var(--text-muted); margin-bottom: 40px; font-weight: 400; }
+    .bonuses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .bonus-card { background: white; padding: 28px 24px; border: 1px solid rgba(0,0,0,0.06); }
+    .bonus-card.featured { border: 2px solid var(--rust); }
+    .bonus-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .bonus-name { font-size: 14px; font-weight: 600; color: var(--text-dark); line-height: 1.3; flex: 1; padding-right: 12px; }
+    .bonus-value { font-size: 13px; font-weight: 600; color: #5a9e7a; flex-shrink: 0; }
+    .bonus-body { font-size: 13px; color: var(--text-muted); font-weight: 400; line-height: 1.65; }
+
+    /* INVESTMENT */
+    .investment { background: var(--dark); color: white; }
+    .investment .eyebrow { color: rgba(255,255,255,0.4); }
+    .investment .section-title { color: white; }
+    .investment-sub { font-size: 16px; color: rgba(255,255,255,0.5); font-weight: 400; margin-bottom: 60px; }
+    .pricing-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; max-width: 700px; }
+    .price-card { border: 1px solid rgba(255,255,255,0.12); padding: 40px 36px; }
+    .price-card.featured { border-color: var(--yellow); background: rgba(240,248,124,0.04); }
+    .price-card-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; font-weight: 500; }
+    .price-card.featured .price-card-label { color: var(--yellow); }
+    .price-amount { font-family: 'Switzer', sans-serif; font-size: 48px; font-weight: 800; color: white; line-height: 1; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .price-card.featured .price-amount { color: var(--yellow); }
+    .price-note { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 400; }
+    .price-card.featured .price-note { color: rgba(240,248,124,0.6); }
+    .investment-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+    .tag { border: 1px solid rgba(255,255,255,0.15); padding: 8px 18px; font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+    .investment-closing { max-width: 600px; }
+    .investment-closing p { font-family: 'Switzer', sans-serif; font-size: 18px; font-style: italic; font-weight: 400; color: rgba(255,255,255,0.7); margin-bottom: 10px; line-height: 1.6; }
+    .investment-closing strong { color: var(--yellow); font-style: normal; font-weight: 500; }
+
+    /* ROI */
+    .roi { background: var(--cream); }
+    .roi-rows { border-top: 1px solid var(--border); }
+    .roi-row { display: grid; grid-template-columns: 160px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+    .roi-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); }
+    .roi-value { font-size: 16px; font-weight: 400; color: var(--text-dark); line-height: 1.6; }
+
+    /* ABOUT */
+    .about { background: var(--warm-gray); }
+    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-img { position: relative; }
+    .about-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center top; display: block; }
+    .about-img-caption { position: absolute; bottom: 0; right: 0; background: var(--yellow); padding: 14px 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); }
+    .about-body { font-size: 16px; font-weight: 400; color: #4a4540; line-height: 1.8; margin-bottom: 20px; }
+
+    /* APPLY */
+    .apply-section { background: var(--dark); color: white; }
+    .apply-section .eyebrow { color: rgba(255,255,255,0.4); }
+    .apply-section .section-title { color: white; margin-bottom: 16px; }
+    .apply-intro { font-size: 16px; color: rgba(255,255,255,0.7); font-weight: 400; margin-bottom: 56px; max-width: 540px; line-height: 1.75; }
+    .apply-form { max-width: 640px; display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; }
+    .form-group input, .form-group textarea, .form-group select { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: white; padding: 14px 18px; font-family: 'Switzer', sans-serif; font-size: 15px; font-weight: 400; outline: none; transition: border-color 0.2s; width: 100%; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--yellow); }
+    .form-group select option { background: var(--mid); color: white; }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit { background: var(--rust); color: white; border: none; padding: 18px 40px; font-family: 'Switzer', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.2s; align-self: flex-start; }
+    .form-submit:hover { background: #a93226; transform: translateY(-2px); }
+    .form-note { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 400; }
+    .form-success { display: none; background: rgba(90,158,122,0.15); border: 1px solid rgba(90,158,122,0.4); padding: 24px 28px; color: #8ecfb0; font-size: 15px; font-weight: 400; line-height: 1.6; }
+
+    /* FINAL CTA */
+    .final-cta { background: var(--cream); text-align: center; }
+    .final-cta-title { font-family: 'Switzer', sans-serif; font-size: clamp(36px, 4vw, 60px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .final-cta-body { font-size: 17px; font-weight: 400; color: var(--text-muted); max-width: 520px; margin: 0 auto 48px; line-height: 1.75; }
+    .final-email { margin-top: 24px; font-size: 13px; color: var(--text-muted); }
+    .final-email a { color: var(--text-muted); }
+
+    /* FOOTER */
+    footer { background: var(--text-dark); color: rgba(255,255,255,0.4); padding: 28px 80px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 400; }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: white; }
+    .footer-links { display: flex; gap: 24px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 100px 32px 60px; }
+      .hero-right { height: 70vw; }
+      .hero-badge { bottom: 20px; left: 20px; }
+      .section-inner { padding: 72px 28px; }
+      .steps-grid, .outcomes-grid, .included-grid, .pricing-cards, .about-layout, .form-row { grid-template-columns: 1fr; }
+      .bonuses-grid { grid-template-columns: 1fr 1fr; }
+      .shift-layout { grid-template-columns: 1fr; }
+      .shift-arrow { display: none; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+      .roi-row { grid-template-columns: 110px 1fr; }
+    }
+    @media (max-width: 560px) {
+      .bonuses-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="main-nav">
+    <a href="#" class="nav-brand">Dr. Johnna Consulting</a>
+    <a href="#apply" class="nav-cta">Apply Now</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">A 12-Month Mentorship with Dr. Johnna</p>
+      <h1 class="hero-title">Legacy<sup>™</sup></h1>
+      <p class="hero-subtitle">Build a Personal Brand Business Where <span class="highlight">Identity</span>, <span class="highlight">Income</span>, and <span class="highlight">Impact</span> Align</p>
+      <p class="hero-tagline">For women ready to turn their expertise into authority, visibility, and a body of work worth remembering.</p>
+      <div class="hero-cta-wrap">
+        <a href="#apply" class="btn-primary">Apply Now</a>
+        
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="images/hero-photo.png" alt="Dr. Johnna" />
+
+    </div>
+  </section>
+
+  <section class="pain">
+    <div class="section-inner fade-up">
+      <h2 class="pain-headline">You're good at what you do.<br><em>Really good.</em></h2>
+      <p class="pain-body">You have the degrees, the training, the years of experience. You've helped countless people transform their lives.</p>
+      <p class="pain-label">But here's what no one talks about:</p>
+      <ul class="pain-list">
+        <li>You're earning $40K–$80K a year while working 40–60 hours a week.</li>
+        <li>You're exhausted. You give everything to your clients and have nothing left for yourself.</li>
+        <li>You discount your prices because asking for more feels wrong.</li>
+        <li>Despite all your expertise, you have no clear path to scale without burning out completely.</li>
+      </ul>
+      <p class="pain-closer">You're stuck trading time for money, and the math just doesn't work anymore.</p>
+    </div>
+  </section>
+
+  <section class="for-you">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Is This For You?</span>
+      <h2 class="section-title">This program is for you if...</h2>
+      <p style="font-size:15px;color:var(--text-muted);font-weight:400;margin-bottom:40px;">You're a coach, therapist, creative, designer, consultant, or any service provider who:</p>
+      <div class="checklist">
+        <div class="check-item"><div class="check-icon">✓</div>Has real expertise but chronically underearns</div>
+        <div class="check-item"><div class="check-icon">✓</div>Feels guilty charging premium prices</div>
+        <div class="check-item"><div class="check-icon">✓</div>Works 40–60+ hours a week and is heading toward (or already in) burnout</div>
+        <div class="check-item"><div class="check-icon">✓</div>Has "too many skills" and can't figure out what to offer</div>
+        <div class="check-item"><div class="check-icon">✓</div>Relies on word-of-mouth and has no consistent way to attract clients</div>
+        <div class="check-item"><div class="check-icon">✓</div>Knows you're capable of more but can't see the path forward</div>
+        <div class="check-item"><div class="check-icon">✓</div>Wants to reach more people without sacrificing your health and relationships</div>
+      </div>
+      <div class="for-you-callout">In short: You're a <strong>high-achiever in a helping or creative profession</strong> who's ready to stop trading time for dollars and build something sustainable.</div>
+    </div>
+  </section>
+
+  <section class="cost">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">The Truth</span>
+      <h2 class="section-title">What Staying Here<br>Actually Costs You</h2>
+      <p class="cost-intro">Every month you wait isn't neutral. It's compounding. Let's be direct about what inaction is costing you.</p>
+      <div class="cost-items">
+        <div class="cost-item">
+          <div class="cost-item-title">Financial Loss</div>
+          <div class="cost-item-body">By not moving to a $10K–$20K/month model, you're leaving $7K–$15K on the table every single month. Over 12 months, that's up to $180,000 in unrealized income — not a future projection, a present reality.</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-item-title">The Burnout Ceiling</div>
+          <div class="cost-item-body">Your current model is literally costing you your health. Stress-related illness, strained relationships, family resentment, existential dread. These aren't small things — they're the cost of a business model that was never designed for you.</div>
+        </div>
+        <div class="cost-item">
+          <div class="cost-item-title">Identity Erosion</div>
+          <div class="cost-item-body">Every day you stay "just a helper," you reinforce the belief that you're not expert enough to lead. The longer you wait, the harder it becomes to step into your authority. Your identity as a business owner is built daily — or it's dismantled daily.</div>
+        </div>
+      </div>
+      <div class="cost-pullquote">
+        <p>The investment isn't a cost. It's the exit fee from a business model that's currently costing you $150,000 a year in lost income and 20 hours a week in lost time.</p>
+        <em>You're not saving money by saying no. You're paying a massive premium to stay exhausted.</em>
+      </div>
+    </div>
+  </section>
+
+  <section class="method">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">The Method</span>
+      <h2 class="section-title">What You'll Build<br>in 12 Months</h2>
+      <p class="method-intro">LEGACY™ is a group coaching mentorship that helps you design and launch a strengths-based personal brand business — built from who you actually are, not who you think you should be.</p>
+      <p style="font-weight:700;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px;color:var(--text-muted);">The 5-Step Transformation Path</p>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">01</div><div class="step-title">Identity Excavation &amp; Nervous System Safety</div><div class="step-body">Stop asking "Who am I to do this?" and start building from grounded self-trust and clarity.</div></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-title">Energy Repair &amp; Boundary Redesign</div><div class="step-body">Create a business that fuels you instead of drains you, with boundaries that protect your capacity without guilt.</div></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-title">Strengths-Based Offer Architecture</div><div class="step-body">Transform "What do I even offer?" paralysis into a $5K–$10K+ signature offer you can stand behind confidently.</div></div>
+        <div class="step-card"><div class="step-num">04</div><div class="step-title">Visibility, Authority &amp; Ethical Client Attraction</div><div class="step-body">Become visible and trusted so aligned clients reach out to you — without feeling salesy or inauthentic.</div></div>
+      </div>
+      <div class="step-card" style="margin-top:2px;"><div class="step-num">05</div><div class="step-title">Legacy Scaling &amp; Life Integration</div><div class="step-body">Build a business that creates $10K–$20K months while working 15–25 hours a week, anchored to your values and long-term impact.</div></div>
+    </div>
+  </section>
+
+  <section class="outcomes">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">The Outcome</span>
+      <h2 class="section-title">What Your Life<br>Actually Looks Like</h2>
+      <p style="font-size:15px;color:var(--text-muted);font-weight:400;margin-bottom:12px;">This isn't about working harder. It's about building smarter — from the inside out.</p>
+      <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dark);margin-bottom:32px;">After 12 months in LEGACY™, you will:</p>
+      <div class="outcomes-grid">
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Have potential earnings of $10K–$20K per month through a leveraged signature offer</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Work 15–25 hours per week instead of 40–60, with energy left over for your life</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Charge $5K–$10K+ for your signature program without guilt or apology</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Attract aligned clients consistently who are ready to invest and do the work</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Own your expertise and introduce yourself as a thought leader without cringing</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Have clear boundaries that protect your time, energy, and relationships</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Build a personal brand that reflects your unique strengths, values, and genius</span></div>
+        <div class="outcome-item"><span class="outcome-check">✓</span><span class="outcome-text">Create a body of work worth remembering — that outlives the season you're in</span></div>
+      </div>
+      <p class="outcomes-closing">This is what it looks like when your business is built from you, not in spite of you.</p>
+    </div>
+  </section>
+
+  <section class="shift">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">The Shift</span>
+      <h2 class="section-title">The Real Transformation</h2>
+      <div class="shift-layout">
+        <div class="shift-from">
+          <span class="shift-label">From</span>
+          <p class="shift-body">Burned-out, underpaid, invisible helper drowning in 1:1 work, sacrificing everything, stuck in guilt and people-pleasing, with no clear path forward</p>
+        </div>
+        <div class="shift-arrow">→</div>
+        <div class="shift-to">
+          <span class="shift-label">To</span>
+          <p class="shift-body">Confident business owner earning $10K–$20K/month, working 15–25 hours/week, energized by your work, visible to ideal clients, building a body of work worth remembering — proving to yourself that betting on your dreams was the sanest decision you ever made</p>
+        </div>
+      </div>
+      <div class="shift-image">
+        <img src="images/speaking-photo.png" alt="Dr. Johnna speaking" />
+      </div>
+    </div>
+  </section>
+
+  <section class="included">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">What's Inside</span>
+      <h2 class="section-title">What's Included</h2>
+      <p style="font-size:15px;color:var(--text-muted);font-weight:400;margin-bottom:48px;">12 months of strategic support designed to keep you moving forward</p>
+      <div class="included-grid">
+        <div class="included-card"><div class="included-card-title">2x Monthly Group Coaching Calls</div><div class="included-card-body">Bi-weekly momentum calls where we work through real-time challenges, refine your messaging, troubleshoot obstacles, and celebrate wins. This is where transformation accelerates — you're not alone in this.</div></div>
+        <div class="included-card"><div class="included-card-title">1:1 Kickoff Clarity Call</div><div class="included-card-body">We start with a private session to map your unique strengths, clarify your positioning, and create your personalized roadmap for the 12 months ahead.</div></div>
+        <div class="included-card"><div class="included-card-title">1:1 Conclusion Strategy Call</div><div class="included-card-body">Before you graduate, we design your sustainable scaling plan — what's next, how to grow without burning out, and how to build on the momentum you've created.</div></div>
+        <div class="included-card"><div class="included-card-title">Private Online Community</div><div class="included-card-body">Connect with other high-achieving women who understand the journey, share wins and challenges, get feedback between calls, and build relationships that last beyond the program.</div></div>
+      </div>
+      <div class="bonuses-section">
+        <h3 class="bonuses-title">Exclusive Bonuses to Accelerate Your Success</h3>
+        <p class="bonuses-sub">When you join LEGACY™, you also get immediate access to these powerful resources:</p>
+        <div class="bonuses-grid">
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">Dr. Johnna's Resource Vault</span><span class="bonus-value">$297</span></div><div class="bonus-body">Templates, tools, and curated resources designed to help you build your business with more ease and less reinventing the wheel.</div></div>
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">Passion Fuel AI Tools</span><span class="bonus-value">$600</span></div><div class="bonus-body">Save hours of mental energy every week with Dr. Johnna's custom-built suite of AI tools for freedom-driven entrepreneurs. Psychology-backed systems that work the way your brain works.</div></div>
+          <div class="bonus-card featured"><div class="bonus-header"><span class="bonus-name">Comprehensive Brand Audit by Dr. J</span><span class="bonus-value">$1,200</span></div><div class="bonus-body">Dr. Johnna will personally evaluate your identity, positioning, messaging, visuals, offers, digital presence, and customer journey to ensure your brand communicates value and attracts the right audience.</div></div>
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">Personal Branding with AI</span><span class="bonus-value">$297</span></div><div class="bonus-body">Learn how to package who you are, clarify your message, and bring your brand to life using psychology and AI tools.</div></div>
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">Passion to Profit Course</span><span class="bonus-value">$997</span></div><div class="bonus-body">The complete 6-week system roadmap to launch your profitable business without overwhelm or massive startup costs.</div></div>
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">Gold Offer Challenge</span><span class="bonus-value">$297</span></div><div class="bonus-body">Create your strengths-based signature offer in just three days. Instant access to all recordings and resources.</div></div>
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">High Ticket Offer Course</span><span class="bonus-value">$297</span></div><div class="bonus-body">Create your strengths-based high ticket offer to truly value the transformation you offer. Includes video trainings, workbooks, and AI prompts.</div></div>
+          <div class="bonus-card"><div class="bonus-header"><span class="bonus-name">Website in a Day Course</span><span class="bonus-value">$297</span></div><div class="bonus-body">Dr. Johnna walks you step-by-step through creating a professional website. Go at your own pace and get your online presence live fast.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="investment">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Investment</span>
+      <h2 class="section-title">12-Month Group<br>Coaching Mentorship</h2>
+      <p class="investment-sub">One year of complete transformation — identity, business, and income.</p>
+      <div class="pricing-cards">
+        <div class="price-card"><div class="price-card-label">Payment Plan</div><div class="price-amount">$20K</div><div class="price-note">$3,333.33 × 6 months</div></div>
+        <div class="price-card featured"><div class="price-card-label">Pay In Full — Save $3,000</div><div class="price-amount">$17K</div><div class="price-note">Best value · One payment</div></div>
+      </div>
+      <div class="investment-tags">
+        <span class="tag">Trust yourself again</span>
+        <span class="tag">Charge without guilt</span>
+        <span class="tag">Build from who you are</span>
+        <span class="tag">Protect your energy</span>
+        <span class="tag">Create impact without self-abandonment</span>
+      </div>
+      <div class="investment-closing">
+        <p><em>That's the legacy.</em></p>
+        <p>LEGACY™ is designed for women who are <strong>done waiting for permission</strong> and ready to build the business they've been capable of all along.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="roi">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">The Return</span>
+      <h2 class="section-title">The Return on<br>Your Investment</h2>
+      <div class="roi-rows">
+        <div class="roi-row"><span class="roi-label">You invest</span><span class="roi-value">$17K–$20K over 12 months</span></div>
+        <div class="roi-row"><span class="roi-label">You create</span><span class="roi-value">A $5K–$10K+ signature offer. Enrolling just 2 clients pays for the entire program.</span></div>
+        <div class="roi-row"><span class="roi-label">You reclaim</span><span class="roi-value">1,000+ hours per year by shifting from 40–60 hours to 15–25 hours per week. At $100/hour, that's $100,000 in reclaimed life equity.</span></div>
+        <div class="roi-row"><span class="roi-label">You gain</span><span class="roi-value">Psychological safety. Energy renewal. The end of perfectionism paralysis. A business model that doesn't cost you your health.</span></div>
+        <div class="roi-row"><span class="roi-label">You build</span><span class="roi-value">A body of work worth remembering — something you're proud to stand behind for decades.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Your Guide</span>
+      <div class="about-layout">
+        <div class="about-img">
+          <img src="images/about-photo.png" alt="Dr. Johnna" />
+          <div class="about-img-caption">Dr. Johnna, PhD</div>
+        </div>
+        <div class="about-content">
+          <h2 class="section-title">About Your Coach</h2>
+          <p class="about-body">Dr. Johnna holds a PhD in Psychology and brings over 15 years of entrepreneurial experience as the founder of a successful photography business and a nonprofit organization.</p>
+          <p class="about-body">With a 20-year background as a therapist and over a decade as a psychology professor, she blends deep psychological insight with real-world business strategy to help freedom-driven entrepreneurs turn their passion into profit.</p>
+          <p class="about-body">She is the only Doctor of Psychology teaching entrepreneurs to build identity-based personal brand businesses from the inside out — and she has a deep desire to help people discover their path to freedom, personally and professionally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="apply-section" id="apply">
+    <div class="section-inner fade-up">
+      <span class="eyebrow">Apply Now</span>
+      <h2 class="section-title">Ready to Build?</h2>
+      <p class="apply-intro">This isn't about adding more to your plate. It's about designing a business where identity, income, and impact finally align. Apply below and Dr. Johnna will personally review your application within 48 hours.</p>
+      <div class="form-success" id="form-success">Thank you for applying to LEGACY™. Dr. Johnna reviews every application personally and will be in touch within 48 hours to schedule a clarity call if it seems like a strong fit.</div>
+      <form class="apply-form" id="apply-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Your name" required /></div>
+          <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="your@email.com" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="profession">Current Profession / Business</label><input type="text" id="profession" name="profession" placeholder="e.g. therapist, coach, designer" required /></div>
+          <div class="form-group"><label for="income">Current Annual Income</label><select id="income" name="income" required><option value="" disabled selected>Select a range</option><option>Under $40K</option><option>$40K – $60K</option><option>$60K – $80K</option><option>$80K – $100K</option><option>Over $100K</option></select></div>
+        </div>
+        <div class="form-group"><label for="challenge">What is your biggest challenge right now in your business?</label><textarea id="challenge" name="challenge" placeholder="Tell me what's not working and what you're struggling with most..." required></textarea></div>
+        <div class="form-group"><label for="vision">In 12 months, what would success look like for you?</label><textarea id="vision" name="vision" placeholder="Be specific — income, hours worked, type of clients, how you feel..." required></textarea></div>
+        <div class="form-group"><label for="readiness">Why is making this shift important to you right now?</label><textarea id="readiness" name="readiness" placeholder="What's at stake if you don't make a change?" required></textarea></div>
+        <div class="form-group"><label for="investment_readiness">Are you prepared to invest $17K–$20K over the next 12 months?</label><select id="investment_readiness" name="investment_readiness" required><option value="" disabled selected>Select one</option><option>Yes, I'm ready to invest</option><option>Yes, but I have questions about the investment</option><option>Not at this time</option></select></div>
+        <div class="form-group"><label for="anything">Anything else you'd like Dr. Johnna to know?</label><textarea id="anything" name="additional_info" placeholder="Optional — share anything else that feels important..."></textarea></div>
+        <button type="submit" class="form-submit">Submit My Application</button>
+        <p class="form-note">Applications are reviewed personally. You'll hear back within 48 hours.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="section-inner fade-up">
+      <h2 class="final-cta-title">Ready to Build?</h2>
+      <p class="final-cta-body">If you're ready to turn your expertise into authority, visibility, and a body of work worth remembering — apply now.</p>
+      <a href="#apply" class="btn-primary">Apply Now</a>
+      <p class="final-email">Questions? Email <a href="mailto:j@doctorjohnna.com">j@doctorjohnna.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Dr. Johnna Consulting, LLC. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://doctorjohnna.com" target="_blank">doctorjohnna.com</a>
+      <a href="https://instagram.com/dr.johnna" target="_blank">@dr.johnna</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const form = document.getElementById('apply-form');
+    const success = document.getElementById('form-success');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (res.ok) { form.style.display = 'none'; success.style.display = 'block'; }
+        else { btn.textContent = 'Something went wrong. Try again.'; btn.disabled = false; }
+      } catch { btn.textContent = 'Something went wrong. Try again.'; btn.disabled = false; }
+    });
+  </script>
+</body>
+</html>
