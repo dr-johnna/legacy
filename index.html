@@ -6,7 +6,7 @@
   <title>LEGACY™ | Dr. Johnna</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Switzer:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Switzer:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -21,6 +21,10 @@
       --teal: #4ECDC4;
       --border: rgba(0,0,0,0.08);
     }
+
+    .hero-title-highlight { background: var(--rust); color: white; padding: 0 12px 8px 4px; display: inline; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+    .tagline-bridge { background: var(--dark); padding: 48px 80px; text-align: center; }
+    .tagline-bridge-text { font-family: 'DM Serif Display', serif; font-size: clamp(20px, 2.5vw, 30px); font-weight: 400; color: white; line-height: 1.5; max-width: 760px; margin: 0 auto; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Switzer', sans-serif; background: var(--cream); color: var(--text-dark); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
@@ -35,9 +39,9 @@
     .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
     .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 80px; }
     .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 500; }
-    .hero-title { font-family: 'Switzer', sans-serif; font-size: clamp(80px, 11vw, 140px); font-weight: 800; line-height: 0.9; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 4px; }
+    .hero-title { font-family: 'Switzer', sans-serif; font-size: clamp(80px, 11vw, 140px); font-weight: 800; line-height: 0.9; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 0; }
     .hero-title sup { font-size: 0.28em; vertical-align: super; font-weight: 700; }
-    .hero-subtitle { font-size: 17px; font-weight: 500; color: var(--text-dark); line-height: 1.5; margin-bottom: 20px; }
+    .hero-subtitle { font-size: 17px; font-weight: 500; color: var(--text-dark); line-height: 1.5; margin-top: 28px; margin-bottom: 20px; }
     .hero-subtitle .highlight { background: var(--yellow); padding: 1px 6px; }
     .hero-tagline { font-family: 'Switzer', sans-serif; font-style: italic; font-size: 17px; color: var(--text-muted); margin-bottom: 48px; font-weight: 400; line-height: 1.55; max-width: 420px; }
     .hero-cta-wrap { display: flex; align-items: center; gap: 24px; }
@@ -52,7 +56,7 @@
 
     /* SHARED */
     .eyebrow { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; display: block; font-weight: 500; }
-    .section-title { font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif; font-size: clamp(32px, 4vw, 54px); font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 24px; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 58px); font-weight: 400; font-style: normal; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.01em; }
     .section-inner { max-width: 1080px; margin: 0 auto; padding: 100px 48px; }
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -60,7 +64,7 @@
     /* PAIN */
     .pain { background: #F5F0E8; }
     .pain .section-inner { max-width: 800px; }
-    .pain-headline { font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 32px; }
+    .pain-headline { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 54px); font-weight: 400; font-style: normal; line-height: 1.15; margin-bottom: 32px; }
     .pain-headline em { font-style: italic; font-weight: 600; }
     .pain-body { font-size: 17px; color: #4a4540; margin-bottom: 28px; line-height: 1.75; font-weight: 400; }
     .pain-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; font-weight: 600; }
@@ -127,7 +131,7 @@
     .included-card-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--text-dark); }
     .included-card-body { font-size: 14px; color: var(--text-muted); font-weight: 400; line-height: 1.7; }
     .bonuses-section { background: #FEFAE8; padding: 56px 0 0; }
-    .bonuses-title { font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif; font-size: 28px; font-weight: 700; font-style: italic; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rust); text-align: center; margin-bottom: 8px; }
+    .bonuses-title { font-family: 'DM Serif Display', serif; font-size: 32px; font-weight: 400; font-style: normal; color: var(--rust); text-align: center; margin-bottom: 8px; }
     .bonuses-sub { text-align: center; font-size: 14px; color: var(--text-muted); margin-bottom: 40px; font-weight: 400; }
     .bonuses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .bonus-card { background: white; padding: 28px 24px; border: 1px solid rgba(0,0,0,0.06); }
@@ -193,7 +197,7 @@
 
     /* FINAL CTA */
     .final-cta { background: var(--cream); text-align: center; }
-    .final-cta-title { font-family: 'Switzer', sans-serif; font-size: clamp(36px, 4vw, 60px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .final-cta-title { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 5vw, 68px); font-weight: 400; font-style: normal; line-height: 1.1; margin-bottom: 24px; }
     .final-cta-body { font-size: 17px; font-weight: 400; color: var(--text-muted); max-width: 520px; margin: 0 auto 48px; line-height: 1.75; }
     .final-email { margin-top: 24px; font-size: 13px; color: var(--text-muted); }
     .final-email a { color: var(--text-muted); }
@@ -234,20 +238,21 @@
 
   <section class="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow">A 12-Month Mentorship with Dr. Johnna</p>
-      <h1 class="hero-title">Legacy<sup>™</sup></h1>
-      <p class="hero-subtitle">Build a Personal Brand Business Where <span class="highlight">Identity</span>, <span class="highlight">Income</span>, and <span class="highlight">Impact</span> Align</p>
-      <p class="hero-tagline">For women ready to turn their expertise into authority, visibility, and a body of work worth remembering.</p>
-      <div class="hero-cta-wrap">
-        <a href="#apply" class="btn-primary">Apply Now</a>
-        
-      </div>
+      <p class="hero-eyebrow">A 12-Month Group Mentorship with Dr. Johnna</p>
+      <h1 class="hero-title"><span class="hero-title-highlight">Legacy<sup>™</sup></span></h1>
+      <p class="hero-subtitle">Build a personal brand business where identity, income, and impact align</p>
+
     </div>
     <div class="hero-right">
       <img src="images/speaking-photo.png" alt="Dr. Johnna" />
 
     </div>
   </section>
+
+
+  <div class="tagline-bridge">
+    <p class="tagline-bridge-text">The Legacy mentorship experience is for women ready to turn their expertise into authority, visibility, and a body of work worth remembering.</p>
+  </div>
 
   <section class="pain">
     <div class="section-inner fade-up">
